@@ -1,0 +1,34 @@
+Events- Master{
+    *Event - Structure{
+        #Name -str
+        #Type -str
+        #Summary -str
+        #Venue
+        #Address
+        #date -str
+        #time -str
+        #Hosting Employees - {
+            *Lead - str
+            *Employees - str
+            ...
+        }
+        #Client -str
+        #Attendee list - {
+            Attnedees - str
+        }
+        #Resources - {
+            *In house {str ...} - What we have
+            *Avilible {str ...} - What is not but we can access
+        }
+        # Requirements - {
+            item - bool (Acquired = True, Unacquired = False)
+            ....
+        } - What the event needs
+        
+        # Checklist - {
+            > Item - bool (Completed = True, Incomplete = False)
+            ...
+        }
+    }
+    ...
+}

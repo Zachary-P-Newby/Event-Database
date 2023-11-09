@@ -1,0 +1,44 @@
+10/31/23
+ - 25 minutes
+  * Planning and created initial repository
+ - ~40 Minutes
+ * Solving Python and pip Issues so I can isntall firebase sdk for Python
+ * Installed Firbase on my python installation
+
+11/2/23
+ 50 Minutes
+ * Getting firebase to work and isntall google Cloud sdk
+ 8-10 Minutes
+ * Got Firebase and google cloud to work
+ * REmember to change project id for firebase from 'expiriment1-31188' to event database id
+
+11/6/23
+ 15 minutes
+ *Watch tutorial - Connecting Firebase Realtime Database To Python: Creating, Reading, Updating, and Deleting Data
+ 25+ minutes
+ * Tutorial progress
+ * Fixing Library Issues with pyrebase
+
+11/7/23
+< 20 Minutes
+    Solved Library issues for pyrebase
+25 minutes
+    Watched Connecting Firebase Realtime Database To Python: Creating, Reading, Updating, and Deleting Data
+    Practiced CRUD operations
+
+11/8/23
+
+25 minutes
+    Praciced CRUD
+    Planning out Event databse program
+
+25 Minutes
+    Planning out Event Manger program
+        * Created eventDatabseArchitecture.pdf - Program flow chart
+        * Created Databse-architecture.txt - Databse sturcture
+    Created EventManger128 Project and Database
+    Created eventManger128BuildDatabse.py
+
+25+ Minutes
+    Link Databse to file
+    Began Building database

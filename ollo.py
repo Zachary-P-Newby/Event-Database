@@ -1,2 +1,11 @@
-print("Oh -loww?")
-print("Uh, it's pronounced hello, sir")
+import firebase_admin
+from firebase_admin import firestore
+
+# Application Default credentials are automatically created.
+app = firebase_admin.initialize_app()
+db = firestore.client()
+
+print("Great success!")
+
+
+
