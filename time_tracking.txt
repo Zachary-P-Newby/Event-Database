@@ -42,3 +42,14 @@
 25+ Minutes
     Link Databse to file
     Began Building database
+
+
+11/9/23
+25+ Minutes
+    Fixed File naming
+    Began event manger prototype
+        Created Functions:
+            Main
+            Database Overview
+            Database Help
+            List Events
