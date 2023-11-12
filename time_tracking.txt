@@ -49,7 +49,69 @@
     Fixed File naming
     Began event manger prototype
         Created Functions:
-            Main
-            Database Overview
-            Database Help
-            List Events
+            main
+            database_overview
+            database_help
+            list_events
+
+11/10/23
+    40 Minutes
+    * Finished database_overview
+    * Created create_event
+    * Tried and failed to implement newtwork and database connection error handling
+    * Created delete_event
+    * Started update_event
+
+Current total time: ~ 5 /34 HOurs
+
+11/11/23
+To do:
+Add update_event
+Add read_event
+Add download_event to save event to .txt or json file. - See how python writes to JSon files
+Create final program commandline menu 
+record demo
+Submit
+
+25 minutes
+    Progress on update_event function
+25 minutes
+    Progress on update_event function
+    Fixed event_list bug
+25 Minutes
+    Progress on update_event function
+    Bug Fixes
+    Database Unescesscary Directory removal
+25 Minutes
+    read_database progress
+    _select_database fix
+25 minutes
+    Finished Read Database
+    Progress on update_event function
+12 Minutes
+    Code refactor
+26 minutes
+    Progress on update_event function
+~30 Minutes
+    Progress on update_event function
+    Testing and Bug Fixing
+
+
+11/12/23
+To do:
+    Add sub_dir input to create_event
+    Add view individual element to read_event
+    Transfer to final program File
+    Bug fix
+    Record demo
+    fill out read me and form
+    submit
+    MAKE SURE GITHUB REPO IS ACESSABILE!
+    Apoligize
+
+25 minutes
+    Code refactor and adjustments for
+        create_event
+        _select_element
+        event element names
+        Employees sub-sirectory

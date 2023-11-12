@@ -42,11 +42,12 @@ For the program I used the Python programming language and the the Pyrebase4 Lib
 - [PyPi - firebase 4.0.1](https://pypi.org/project/firebase/)
 - [Pyrebase4 - Repo](https://github.com/nhorvath/Pyrebase4)
 - [Web Site Name](https://softwareengineering.stackexchange.com/questions/308972/python-file-naming-convention#:~:text=So%20PEP%208%20tells%20you%20that%3A%201%20modules,underscores%3B%203%20classes%20should%20use%20the%20CapWords%20convention.)
+- [How can I write a `try`/`except` block that catches all exceptions?](https://stackoverflow.com/questions/4990718/how-can-i-write-a-try-except-block-that-catches-all-exceptions)
 # Future Work
 
 {Make a list of things that you need to fix, improve, and add in the future.}
 
-- Item 1
+- Figure out how to handle connection Errors
 - Item 2
 - Item 3
 

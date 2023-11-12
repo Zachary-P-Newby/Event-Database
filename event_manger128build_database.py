@@ -41,7 +41,10 @@ dummy_data = {"Name":"2 Dummies Concert",
     "Requirements":{"Audio Equipment":True,"Security":True,"Ticket Booth":False,"Refresments":False},
     "Checklist":{"Set up Audio Equipment":True,"Hire Security Contractor":True,"Set Up ticket Booth":False,"Acquire Refreshments":False,"Clean Venue":False}
     }
-database.child("Master").child("Dummy").set(dummy_data)
+
+""" .child("Master") """
+
+database.child("Dummy").set(dummy_data)
 #"":"",
 
 #---------------------------------------------------------------------------------------------------------------------------------

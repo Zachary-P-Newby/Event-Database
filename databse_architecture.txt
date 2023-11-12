@@ -1,4 +1,4 @@
-Events- Master{
+Master{
     *Event - Structure{
         #Name -str
         #Type -str
@@ -14,12 +14,10 @@ Events- Master{
         }
         #Client -str
         #Attendee list - {
-            Attnedees - str
+            Attnedee - Bool (Arrived = True, Not Arrived = False)
+            ...
         }
-        #Resources - {
-            *In house {str ...} - What we have
-            *Avilible {str ...} - What is not but we can access
-        }
+
         # Requirements - {
             item - bool (Acquired = True, Unacquired = False)
             ....
