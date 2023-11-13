@@ -16,6 +16,7 @@ For this program I used Google Firebase for my databse and the Python Pyrebase L
 
 Master: - Master directory contains all events
     Event: - each event directory contains the following:
+    
     * NAME - Event Title (ie. Johnson Wedding Convention)
     
     * TYPE - TYPE of event (ie. Concert, Party, Reception)
