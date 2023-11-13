@@ -62,8 +62,7 @@ def database_overview():
 
 def list_events():
     """Print list of all events"""
-    print("\nDatabse Overview:\n")
-    print("Events:")
+    print("\nAll Events:")
 
     for i in events:
         print(f"> {i}")
@@ -75,41 +74,115 @@ def read_event():
     event = _select_event()
     if event == "quit":
         print("Reading Cancelled")
+        return None
     else:
+        
         print("Event Overview:\n")
         print(f"""{event["NAME"]}:
-* TYPE: {event["TYPE"]}
+* Type: {event["TYPE"]}
 * Summary: {event["SUMMARY"]}
-* Venue - {event["Venue"]}
-* Address - {event["Address"]}
-* Date - {event["Date"]}
-* Time - {event["Time"]}
-* Client - {event["Client"]}
+* Venue - {event["VENUE"]}
+* Address - {event["ADDRESS"]}
+* Date - {event["DATE"]}
+* Time - {event["TIME"]}
+* Client - {event["CLIENT"]}
 """)
+        
+        #["NAME","TYPE","SUMMARY","VENUE","ADDRESS","DATE","TIME","CLIENT","ATTENDEES","EMPLOYEES","REQUIREMENTS","TASKS"]
     print("Employees:")
-    for key in event["Employees"]:
-        print(f"    * {key} - {event["Employees"][key]}")
+    for key in event["EMPLOYEES"]:
+        print(f"    * {key} - {event["EMPLOYEES"][key]}")
 
     print("Attendees:")
-    for key in event["Attendees"]:
-        print(f"    * {key} - {event["Attendees"][key]}")
+    for key in event["ATTENDEES"]:
+        print(f"    * {key} - {event["ATTENDEES"][key]}")
 
     print("Requirements:")
-    for key in event["Requirements"]:
-        print(f"    * {key} - {event["Requirements"][key]}")
+    for key in event["REQUIREMENTS"]:
+        print(f"    * {key} - {event["REQUIREMENTS"][key]}")
 
     print("Checklist:")
-    for key in event["Checklist"]:
-        print(f"    * {key} - {event["Checklist"][key]}")
+    for key in event["TASKS"]:
+        print(f"    * {key} - {event["TASKS"][key]}")
 
 def create_event(database):
     """ Create a New Event """
+
+    #Nested Functions
+    def _create_checklist(element):
+        print(f"\nAdding Items to {element}")
+        checklist = dict()
+        active = True
+
+        if element == "ATTENDEES":
+            print("Enter name and statement (true or false) indicating if they have RSVP'd. If the event is open to the public, include, open as key, and true as value.\n(enter quit as name to stop)")
+        elif element == "REQUIREMENTS":
+            print("Enter required good or service and statement (true or false) indicating if it has been acquired.\n(enter quit as requirement to stop)")
+        else:
+            print("Enter task and statement (true or false) indicating if it has been completed\n(enter quit as task to stop)")
+        
+        while active:
+
+            key = input("Enter key: ")
+            if key.lower() == "quit":
+                print("Appending items finished")
+                
+                if checklist == {}:
+                    checklist['Placeholder'] = "Add Data here"
+                return checklist                
+
+            else:
+
+                value = input("Enter status - f for false, t for true, false by default: ")
+                if value.lower() == "f":
+                    checklist[key] = False
+                    continue
+                elif value.lower() == "t":
+                    checklist[key] = True
+                    continue
+                else:
+                    print("Invalid input, entering false")
+                    checklist[key] = False
+                    continue
+
+    def _create_employees():
+        print("\nAdding Employees Assigned to Event:")
+        employees = dict()
+        active = True
+        print("Enter name and posistion, enter quit as name to stop")
+        while active:
+            name = input("Enter name: ")
+            if name.lower() == "quit":
+                print("Appending items finished")
+                if employees == {}:
+                    employees["Placeholder"] = "Add data here"
+                return employees
+            
+            else:
+                value = input("Enter posistion: ")
+                employees[name] = value
+
+    def _create_event(database,event):
+        events[event["NAME"]] = event
+        database.child(event["NAME"]).set(event)
+    #Function Body
     print("\nCreating Event\n")
     event = dict()
     
     print("Enter Event Initialization Information:")
 
-    event["NAME"] = input("Enter Event NAME: ")
+    active = True
+    while active:
+        name = input("Enter Event NAME: ('quit' to cancel) ")
+        if "." in name:
+            print("Invalid name, '.' cannot be in event name. Enter again")
+            continue
+        elif name.lower() == "quit":
+            print('Event Creation Cancelled')
+            return None
+        else:
+            event["NAME"] = name
+            break
 
     event["TYPE"] = input("Enter the type of the event (ie. party, wedding, tournament): ")
 
@@ -125,63 +198,21 @@ def create_event(database):
 
     event["CLIENT"] = input("Enter Event Client: ")
 
-    print("Adding sub directories - checklists and employees, each must have at least one value to be saved to database")
+    print("Adding sub directories - checklists and employees")
 
-    event["ATTENDEES"] = _add_checklist("ATTENDEES")
+    event["ATTENDEES"] = _create_checklist("ATTENDEES")
 
     #event["Employees"] = dict()
-    event["EMPLOYEES"] = _add_employees()
+    event["EMPLOYEES"] = _create_employees()
 
-    event["REQUIREMENTS"] = _add_checklist("REQUIREMENTS")
+    event["REQUIREMENTS"] = _create_checklist("REQUIREMENTS")
 
-    event["TASKS"] = _add_checklist("TASKS")
-
-
-
-    def _create_event(database,event):
-        events[event["NAME"]] = event
-        database.child(event["NAME"]).set(event)
+    event["TASKS"] = _create_checklist("TASKS")
     
     _create_event(database,event)
-    print("Event Created Successfully. Use update_event to fill in remaining data.")
+    print("Event Successfully Created.")
 
-    def _add_checklist(element):
-        print(f"Adding Items to {element}")
-        checklist = dict()
-        active = True
-        print("Enter keys and status value (true or false) enter quit as key to stop")
-        while active:
-            key = input("Enter key: ")
-            if key.lower() == "quit":
-                print("Appending items finished")
-                active = False
-            else:
-                value = input("Enter status - f for false, t for true, false by default: ")
-                if value.lower() == "f":
-                    checklist[key] = False
-                    continue
-                elif value.lower() == "t":
-                    checklist[key] = True
-                    continue
-                else:
-                    print("Invalid input, entering false")
-                    checklist[key] = False
-                    continue
     
-    def _add_employees():
-        print("Adding Employees Assigned to Event:")
-        employees = dict()
-        active = True
-        print("Enter name and posistion, enter quit as name to stop")
-        while active:
-            name = input("Enter name: ")
-            if name.lower() == "quit":
-                print("Appending items finished")
-                active = False
-                return employees
-            else:
-                value = input("Enter posistion: ")
-                employees[name] = value
                 
 #______________________________________________________________________________________________
 
@@ -208,22 +239,6 @@ def update_event(database):
     def _update_event(database, event):
         database.child(event["NAME"]).set(event)   
     #Select element to update
-
-    
-    
-    def _select_element():
-        
-        running = True
-        while running:
-            print("Select an event element to update")
-            child = input("Enter 'quit' to Cancel: ")
-            if child.upper() in event_elements:
-                return child
-            elif child.lower() == "quit":
-                return "quit"
-            else:
-                print("Invalid Input, Please Re-enter")
-                continue
     
     def _enter_data(element):
         print("")
@@ -243,7 +258,7 @@ def update_event(database):
 """)
             
             if option == "1":
-                print("Checking off item")
+                print("\nChecking off item")
                 item = input("\nEnter item key: ")
                 if item in checklist:
                     if checklist[item] == False:
@@ -255,9 +270,10 @@ def update_event(database):
                 else:
                     print("Invalid input")
                     continue
+                continue
 
             elif option == "2":
-                print("Adding Items")
+                print("\nAdding Items")
                 active = True
                 print("Enter keys and values (enter quit as key to stop)")
                 while active:
@@ -277,9 +293,10 @@ def update_event(database):
                             print("Invalid input, entering false")
                             checklist[key] = False
                             continue
+                continue 
             
             elif option == "3":
-                print("Removing Items")
+                print("\nRemoving Items")
                 active = True
                 print("Enter keys of items you wish to remove, enter quit to stop")
                 while active:
@@ -293,6 +310,7 @@ def update_event(database):
                     else:
                         del(checklist[key])
                         print(f"{key} removed.")
+                continue 
             
             elif option.lower() == "quit":
                 print("Operation finished")
@@ -300,10 +318,11 @@ def update_event(database):
                 return checklist
             else:
                 print("Invalid input, try again")
+                continue 
     
 
     def _update_employees(employees):
-        print("Updating Employees")
+        print("\nUpdating Employees")
         running = True
         while running:
             print("\nSelect an option")
@@ -312,7 +331,7 @@ def update_event(database):
     quit - quit operation
     Option: """)
             if option == "1":
-                print("Adding Employees")
+                print("\nAdding Employees")
                 active = True
                 print("Enter names and posistions (enter quit as name to stop)")
                 while active:
@@ -324,9 +343,10 @@ def update_event(database):
                     else:
                         value = input("Enter posistion: ")
                         employees[name] = value
+                continue 
             
             elif option == "2":
-                print("Removing Employees")
+                print("\nRemoving Employees")
                 active = True
                 print("Enter names of employees you wish to remove from the event, enter quit as a name to stop")
                 while active:
@@ -341,6 +361,7 @@ def update_event(database):
                     else:
                         del(employees[name])
                         print(f"{name} removed.")
+                continue                        
             
             elif option.lower() == "quit":
                 print("Operation finished")
@@ -348,11 +369,8 @@ def update_event(database):
                 return employees
             else:
                 print("Invalid input, try again")
-#-------------------------------------------
+                continue 
 
-    
-
-    #________________________________
     print(""*5)
 
     event = _select_event()
@@ -369,11 +387,9 @@ def update_event(database):
             elif element == "EMPLOYEES":
                 event["EMPLOYEES"] == _update_employees(event["EMPLOYEES"])
             else:
-                event[element] = _enter_data()
+                event[element] = _enter_data(element)
             _update_event(database, event)
 
-            
-    
 
 def _select_event():
     """Hidden dunction used for selecting events"""
@@ -389,15 +405,38 @@ def _select_event():
             print("Invalid Input, Please Re-enter")
             continue
 
+def _select_element():
+    """ Select an element """
+    running = True
+    while running:
+        print("Select an element:")
+        element = input("Enter 'quit' to Cancel: ")
+        if element.upper() in event_elements:
+            return element.upper()
+        elif element.lower() == "quit":
+            return "quit"
+        else:
+            print("Invalid Input, Please Re-enter")
+            continue
+
 def _create_event_dict(database):
-    #creates dict containing all events
-    return dict(database.get().val())
+    """ creates dict containing all events """
+    data = database.get().val()
+    #Error handling if databse is empty
+    if data == None:
+        print("Empty")
+        database.child("Init_dummy").set({"NAME":"Init_Dummy","Dummy":"Stand-in value for initialization"})
+        return _create_event_dict(database)
+    else:
+        return dict(data)
+
 
 
 
 #Main
 def main():
 
+    global database
     database = connect_to_database()
 
     global events
@@ -410,8 +449,7 @@ def main():
     checklists = ["ATTENDEES","REQUIREMENTS","TASKS"]
 
     database_overview()
-    create_event(database)
-    create_event(database)
+    """ create_event(database) """
     list_events()
     read_event()
     update_event(database)
@@ -424,8 +462,3 @@ def main():
 #Run Program
 if __name__ == "__main__":
     main()
-
-
-"""
-             
-              """

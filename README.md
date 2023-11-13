@@ -2,25 +2,43 @@
 
 To imrpove my skills as a software engineer I have created a simple python and ggogle firbase program for event planning to learn how to work with Google Firbase using the Pyrebase4 Library.
 
-{Provide a description of the software that you wrote and how it integrates with a Cloud Database. Describe how to use your program.}
 My program is a simple event planner, use for storing and retreiving information on events such as parties, weddings, funerals, conventions, business meetings, etc. Users can create, modify, delete, and read data from a central databse in real time allowing them to track progress on an event, see the key details, and what needs to be done. The results are printed to the console or terminal.
 
-{Describe your purpose for writing this software.}
-To learn how to use
+My purpose in creating this software was to learn how to work with JSON based real time databases in python to improve my knowledge and skills.
 
-{Provide a link to your YouTube demonstration. It should be a 4-5 minute demo of the software running, a walkthrough of the code, and a view of the cloud database.}
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://youtu.be/7tqUxpK2ae4)
 
 # Cloud Database
 
-I am using google Firebaseits real time databse feature to create and manage a databse.
+For this program I used Google Firebase for my databse and the Python Pyrebase Library (specifically the pyrebase-4 fork) to interact with it in Python
 
 
+Master: - Master directory contains all events
+    Event: - each event directory contains the following:
+    * NAME - Event Title (ie. Johnson Wedding Convention)
+    
+    * TYPE - TYPE of event (ie. Concert, Party, Reception)
+    
+    * SUMMARY - Event Summary
+    
+    * Venue - Location of Event
+    
+    * Address - Venue Address
+    
+    * Date - Date of event
+    
+    * Time - Event Time (ie. 12:00PM, 6-10PM, 9AM-5PM)
+          
+    * Client - Client Name and Information
+    
+    * Employees - Sub dirctory - Names and posistions of employees hosting event. 
 
-
-
-{Describe the structure of the database that you created.}
+    * Attendees - Sub dirctory - List of All Attendees and whether or not they have arrived
+          
+    * Requirements - Sub-Directory - Event Requirements and whether or not they have arrived
+    
+    * Tasks - Sub-Directory - checklist of tasks to be completed
 
 
 
@@ -44,13 +62,6 @@ For the program I used the Python programming language and the the Pyrebase4 Lib
 - [Web Site Name](https://softwareengineering.stackexchange.com/questions/308972/python-file-naming-convention#:~:text=So%20PEP%208%20tells%20you%20that%3A%201%20modules,underscores%3B%203%20classes%20should%20use%20the%20CapWords%20convention.)
 - [How can I write a `try`/`except` block that catches all exceptions?](https://stackoverflow.com/questions/4990718/how-can-i-write-a-try-except-block-that-catches-all-exceptions)
 # Future Work
-
-{Make a list of things that you need to fix, improve, and add in the future.}
-
 - Figure out how to handle connection Errors
-- Item 2
-- Item 3
-
-
-
-- [Web Site Name](http://url.link.goes.here)
+- Add ability to write to txt and json files to store data in them 
+- Expand functionality of the read_database Function to only view one element of an event at a time.

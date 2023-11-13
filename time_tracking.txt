@@ -99,8 +99,8 @@ Submit
 
 11/12/23
 To do:
-    Add sub_dir input to create_event
-    Add view individual element to read_event
+    Add sub_dir input to create_event X
+    Add view individual element to read_event - cancelled
     Transfer to final program File
     Bug fix
     Record demo
@@ -115,3 +115,21 @@ To do:
         _select_element
         event element names
         Employees sub-sirectory
+25+ Minutes
+    Empty databse error hadnling implemented
+    Bug Testing and fixing
+< 32 Minutes
+    Bug Testing and fixing
+22.8 MInutes
+    Bug Testing and fixing - Finished?
+
+11/12-13/23
+25 minutes
+    create event_manager_128.py files
+    Began creating final versions of functions
+        renamed inner functions
+        expanding documentation in event_manger_help
+< 30 minutes
+    Created Final Build
+        Added all functions to final program file
+        ran test and fixed bugs
