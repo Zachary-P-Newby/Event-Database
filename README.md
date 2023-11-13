@@ -13,6 +13,7 @@ My purpose in creating this software was to learn how to work with JSON based re
 
 For this program I used Google Firebase for my databse and the Python Pyrebase Library (specifically the pyrebase-4 fork) to interact with it in Python
 
+Database structure:
 
 Master: - Master directory contains all events
     Event: - each event directory contains the following:

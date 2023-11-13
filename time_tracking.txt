@@ -62,7 +62,7 @@
     * Created delete_event
     * Started update_event
 
-Current total time: ~ 5 /34 HOurs
+Current total time: ~ 5.75 HOurs 
 
 11/11/23
 To do:
@@ -133,3 +133,7 @@ To do:
     Created Final Build
         Added all functions to final program file
         ran test and fixed bugs
+
+25 minutes
+    Record and upload demo
+    Populate readme
